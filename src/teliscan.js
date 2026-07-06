@@ -3,6 +3,9 @@ const DEFAULT_RULES = {
   prefixes: ['11', '12', '13', '14'],
 };
 
+const MIN_HISTORY = 20;
+const MAX_HISTORY = 100;
+
 const DEFAULT_SETTINGS = {
   autoCopy: false,
   darkMode: false,
@@ -43,7 +46,8 @@ function formatDialCode(voucherCode, shortcode = '*123') {
 class TeliScanService {
   constructor(options = {}) {
     this.rules = options.rules || DEFAULT_RULES;
-    this.maxHistory = Math.min(Math.max(options.maxHistory || 20, 20), 100);
+    const requestedHistory = options.maxHistory ?? MIN_HISTORY;
+    this.maxHistory = Math.min(Math.max(requestedHistory, MIN_HISTORY), MAX_HISTORY);
     this.settings = { ...DEFAULT_SETTINGS, ...(options.settings || {}) };
     this.history = [];
   }

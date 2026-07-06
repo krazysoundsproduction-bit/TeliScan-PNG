@@ -28,7 +28,7 @@ test('formatDialCode prepares dialable USSD format', () => {
 });
 
 test('TeliScanService tracks source/status and limits history', () => {
-  const service = new TeliScanService({ maxHistory: 20 });
+  const service = new TeliScanService({ maxHistory: 25 });
 
   service.processCode('111234567890', 'camera');
   const invalid = service.processCode('abcd', 'manual');
@@ -41,7 +41,7 @@ test('TeliScanService tracks source/status and limits history', () => {
     service.processCode(`1112345678${String(i).padStart(2, '0')}`);
   }
 
-  assert.equal(service.getHistory().length, 20);
+  assert.equal(service.getHistory().length, 25);
 });
 
 

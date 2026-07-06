@@ -1,7 +1,7 @@
 {
   "name": "teliscan-png",
   "version": "1.0.0",
-  "description": "Using camera to scan voucher for Telikom PNG Rait Cards.",
+  "description": "Uses camera to scan vouchers for Telikom PNG Rait Cards.",
   "main": "src/teliscan.js",
   "scripts": {
     "test": "node --test",
