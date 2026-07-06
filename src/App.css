@@ -1,0 +1,325 @@
+/* ── Global variables ── */
+:root {
+  --teli-blue: #003a8c;
+  --teli-blue-dark: #002266;
+  --teli-blue-light: #e8f0fe;
+  --teli-red: #cc0000;
+  --teli-gold: #f5a623;
+
+  --text: #374151;
+  --text-light: #6b7280;
+  --text-heading: #111827;
+  --bg: #f9fafb;
+  --bg-card: #ffffff;
+  --border: #e5e7eb;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,.10), 0 2px 4px rgba(0,0,0,.06);
+  --shadow-lg: 0 10px 28px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+
+  font: 16px/1.55 system-ui, 'Segoe UI', Roboto, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --teli-blue: #4d8cf5;
+    --teli-blue-dark: #2563eb;
+    --teli-blue-light: #1e2a45;
+    --text: #d1d5db;
+    --text-light: #9ca3af;
+    --text-heading: #f9fafb;
+    --bg: #111827;
+    --bg-card: #1f2937;
+    --border: #374151;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body { margin: 0; }
+
+/* ── App shell ── */
+.app {
+  min-height: 100svh;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Header ── */
+.app-header {
+  background: var(--teli-blue);
+  color: #fff;
+  padding: 20px 24px 18px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+}
+
+.header-brand {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1;
+}
+
+.brand-teli { color: #fff; }
+.brand-scan { color: var(--teli-gold); }
+
+.header-sub {
+  margin: 6px 0 0;
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* ── Main ── */
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 20px;
+}
+
+/* ── Home screen ── */
+.home-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 340px;
+  text-align: center;
+}
+
+.home-screen h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-heading);
+}
+
+.home-desc {
+  color: var(--text-light);
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Card illustration */
+.card-illustration { margin: 8px 0; }
+
+.illus-card {
+  width: 200px;
+  height: 120px;
+  background: linear-gradient(135deg, var(--teli-blue) 0%, var(--teli-blue-dark) 100%);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px 18px 14px;
+}
+
+.illus-lines { display: flex; flex-direction: column; gap: 6px; }
+
+.illus-line {
+  height: 8px;
+  background: rgba(255,255,255,0.35);
+  border-radius: 4px;
+}
+
+.illus-line.short { width: 55%; }
+
+.illus-barcode {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 28px;
+}
+
+.illus-bar {
+  flex: 1;
+  background: rgba(255,255,255,0.6);
+  border-radius: 1px;
+  height: 100%;
+}
+
+.illus-bar.thin {
+  flex: 0 0 2px;
+  height: 70%;
+}
+
+/* Scan button */
+.scan-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--teli-blue);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 32px;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+}
+
+.scan-btn:hover {
+  background: var(--teli-blue-dark);
+  box-shadow: var(--shadow-lg);
+}
+
+.scan-btn:active { transform: scale(0.97); }
+
+.scan-btn-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+/* ── Scanner wrapper ── */
+.scanner-wrapper {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.scanner-hint {
+  color: var(--text-light);
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+}
+
+/* html5-qrcode injects its own UI; give it a tidy container */
+#teliscan-reader {
+  width: 100% !important;
+  border: none !important;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+/* ── Result card ── */
+.result-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  padding: 32px 28px;
+  max-width: 360px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.result-success-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #dcfce7;
+  color: #16a34a;
+  font-size: 26px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .result-success-icon {
+    background: #14532d;
+    color: #4ade80;
+  }
+}
+
+.result-card h2 {
+  margin: 0;
+  font-size: 22px;
+  color: var(--text-heading);
+}
+
+.result-label {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.result-code-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--teli-blue-light);
+  border: 1px solid var(--teli-blue);
+  border-radius: 10px;
+  padding: 10px 14px;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.result-code {
+  font-family: ui-monospace, Consolas, monospace;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--teli-blue);
+  word-break: break-all;
+}
+
+.copy-btn {
+  background: var(--teli-blue);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.copy-btn:hover { background: var(--teli-blue-dark); }
+
+.scan-again-btn {
+  background: transparent;
+  color: var(--teli-blue);
+  border: 2px solid var(--teli-blue);
+  border-radius: 10px;
+  padding: 10px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  width: 100%;
+}
+
+.scan-again-btn:hover {
+  background: var(--teli-blue);
+  color: #fff;
+}
+
+/* ── Footer ── */
+.app-footer {
+  text-align: center;
+  padding: 16px;
+  font-size: 12px;
+  color: var(--text-light);
+  border-top: 1px solid var(--border);
+}
+
+.app-footer p { margin: 0; }
+
