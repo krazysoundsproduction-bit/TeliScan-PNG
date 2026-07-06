@@ -52,7 +52,6 @@ test('TeliScanService tracks source/status and limits history', () => {
   assert.equal(history.some((item) => item.source === 'camera'), false);
 });
 
-
 test('TeliScanService updates settings for UX toggles', () => {
   const service = new TeliScanService();
   const settings = service.setSettings({ autoCopy: true, darkMode: true, successFeedback: 'sound' });

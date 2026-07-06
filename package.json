@@ -6,7 +6,7 @@
   "scripts": {
     "test": "node --test",
     "lint": "node --check src/teliscan.js",
-    "build": "node --check src/teliscan.js"
+    "build": "node --check src/teliscan.js && node --check test/teliscan.test.js"
   },
   "repository": {
     "type": "git",
