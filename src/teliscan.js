@@ -3,6 +3,7 @@ const DEFAULT_RULES = {
   prefixes: ['11', '12', '13', '14'],
 };
 
+// Keep persisted history within the Phase-1 UX target range (20-100 recent scans).
 const MIN_HISTORY = 20;
 const MAX_HISTORY = 100;
 
