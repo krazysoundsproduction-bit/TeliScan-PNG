@@ -1,0 +1,22 @@
+{
+  "name": "teliscan-png",
+  "version": "1.0.0",
+  "description": "Using camera to scan voucher for Telikom PNG Rait Cards.",
+  "main": "src/teliscan.js",
+  "scripts": {
+    "test": "node --test",
+    "lint": "node --check src/teliscan.js",
+    "build": "node --check src/teliscan.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krazysoundsproduction-bit/TeliScan-PNG.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krazysoundsproduction-bit/TeliScan-PNG/issues"
+  },
+  "homepage": "https://github.com/krazysoundsproduction-bit/TeliScan-PNG#readme"
+}
