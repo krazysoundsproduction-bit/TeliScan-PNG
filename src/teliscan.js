@@ -46,8 +46,8 @@ function formatDialCode(voucherCode, shortcode = '*123') {
 class TeliScanService {
   constructor(options = {}) {
     this.rules = options.rules || DEFAULT_RULES;
-    const requestedHistory = options.maxHistory ?? MIN_HISTORY;
-    this.maxHistory = Math.min(Math.max(requestedHistory, MIN_HISTORY), MAX_HISTORY);
+    const requestedMaxHistory = options.maxHistory ?? MIN_HISTORY;
+    this.maxHistory = Math.min(Math.max(requestedMaxHistory, MIN_HISTORY), MAX_HISTORY);
     this.settings = { ...DEFAULT_SETTINGS, ...(options.settings || {}) };
     this.history = [];
   }

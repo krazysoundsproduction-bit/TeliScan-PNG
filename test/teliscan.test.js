@@ -27,6 +27,10 @@ test('formatDialCode prepares dialable USSD format', () => {
   assert.equal(formatDialCode('11 1234 5678 90'), '*123*111234567890#');
 });
 
+test('formatDialCode supports a custom shortcode', () => {
+  assert.equal(formatDialCode('11 1234 5678 90', '*888'), '*888*111234567890#');
+});
+
 test('TeliScanService tracks source/status and limits history', () => {
   const service = new TeliScanService({ maxHistory: 25 });
 
