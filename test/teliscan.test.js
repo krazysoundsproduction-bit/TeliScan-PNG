@@ -45,7 +45,11 @@ test('TeliScanService tracks source/status and limits history', () => {
     service.processCode(`1112345678${String(i).padStart(2, '0')}`);
   }
 
-  assert.equal(service.getHistory().length, 25);
+  const history = service.getHistory();
+  assert.equal(history.length, 25);
+  assert.equal(history[0].code, '111234567829');
+  assert.equal(history.at(-1).code, '111234567805');
+  assert.equal(history.some((item) => item.source === 'camera'), false);
 });
 
 
